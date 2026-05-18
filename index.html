@@ -303,7 +303,7 @@ nav{position:sticky;top:0;z-index:9999;
 .navlinks a:hover,.navlinks a.on{background:rgba(255,255,255,0.25);}
 
 /* ══ HOME ══ */
-.home{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:12px 10px 60px;}
+.home{position:relative;z-index:1;max-width:1400px;margin:0 auto;padding:12px 16px 60px;}
 
 /* Pills */
 .pills{display:flex;gap:7px;overflow-x:auto;padding:6px 0 12px;scrollbar-width:none;}
@@ -405,6 +405,10 @@ nav{position:sticky;top:0;z-index:9999;
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr);gap:12px;}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(6,1fr);gap:14px;}}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(8,1fr);gap:14px;}}
+@media(min-width:1400px){.grid{grid-template-columns:repeat(10,1fr);gap:14px;}}
 
 /* LOAD MORE */
 .loadmore-wrap{display:none;justify-content:center;margin-top:20px;}
