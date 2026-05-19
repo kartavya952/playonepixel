@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PlayOnePixel - Loading Game...</title>
+<style>
+  body{margin:0;background:#0a0a1a;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;}
+  .box{text-align:center;color:white;}
+  .logo{font-size:2rem;font-weight:bold;color:#1af2f2;margin-bottom:16px;}
+  .msg{color:#aaa;font-size:1rem;}
+  .bar{width:200px;height:4px;background:rgba(255,255,255,0.2);border-radius:4px;margin:16px auto;overflow:hidden;}
+  .fill{height:100%;background:#1af2f2;border-radius:4px;animation:load 1s ease forwards;}
+  @keyframes load{0%{width:0}100%{width:100%}}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="logo">🎮 PlayOnePixel</div>
+  <div class="bar"><div class="fill"></div></div>
+  <div class="msg">Loading game...</div>
+</div>
+<script>
+var path = window.location.pathname;
+var slug = path.replace(/^\/game\//,'').replace(/\/$/,'').replace(/^\/+/,'');
+if(slug && slug !== '404'){
+  window.location.replace('/?openGame=' + encodeURIComponent(slug));
+} else {
+  window.location.replace('/');
+}
+</script>
+</body>
+</html>
