@@ -2541,7 +2541,30 @@ if('IntersectionObserver' in window){
     bg.appendChild(d);
   });
 })();
-
+// ══ AUTOMATIC SITEMAP GENERATOR ══
+function generateSitemap(){
+  var base='https://playonepixel.com';
+  var today=new Date().toISOString().split('T')[0];
+  var xml='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+  xml+='  <url><loc>'+base+'</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n';
+  GAMES.forEach(function(g){
+    if(g.url){
+      var slug=g.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      xml+='  <url><loc>'+base+'/game/'+slug+'/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>\n';
+    }
+  });
+  xml+='</urlset>';
+  return xml;
+}
+function downloadSitemap(){
+  var xml=generateSitemap();
+  var blob=new Blob([xml],{type:'application/xml'});
+  var a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='sitemap.xml';
+  a.click();
+  console.log('Sitemap downloaded! Games: '+GAMES.filter(function(g){return g.url;}).length);
+}
 // INIT
 try{updateFavCnt();}catch(e){}
 try{checkVIPStatus();}catch(e){}
