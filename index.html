@@ -1453,9 +1453,9 @@ function render(){
           <div class="vpc-btn" onclick="openSub()">Upgrade Now →</div>
           <button onclick="openVIPActivate();" style="background:none;border:none;color:rgba(255,255,255,0.9);font-size:0.75rem;font-weight:800;cursor:pointer;margin-top:6px;text-decoration:underline;font-family:'Nunito',sans-serif;padding:4px 8px;">🔑 Already bought? Activate</button>
         </div>
-        ${side?`<div class="gc" onclick="openGame(${si})" style="flex:1;">${thumb(side,'th-side')}<div class="gi"><div class="gn">${side.name}</div><div class="gm"><span class="gcat">${side.cat}</span></div></div></div>`:''}
+        ${side?`<div class="gc" onclick="openGame(${si})" style="flex:1;">${thumb(side,'th-side')}<div class="gi"><div class="gn">${side.name}</div><div class="gm"></div></div></div>`:''}
       </div>
-      <div class="gc" onclick="openGame(${fi})">${thumb(feat,'th-big')}<div class="gi-big"><div class="gn-big">${feat.name}</div><div class="gm"><span class="gcat">${feat.cat}</span></div></div></div>`;
+      <div class="gc" onclick="openGame(${fi})">${thumb(feat,'th-big')}<div class="gi-big"><div class="gn-big">${feat.name}</div><div class="gm"></div></div></div>`;
   } else {
     tw.innerHTML='';
   }
@@ -1507,7 +1507,7 @@ function renderGrid(list,reset){
 
 function cardHTML(g,i){
   const idx=GAMES.indexOf(g);
-  return `<div class="gc" style="animation-delay:${Math.min(i,8)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"><span class="gcat">${g.cat}</span><span class="gstars">★★★★★</span></div></div></div>`;
+  return `<div class="gc" style="animation-delay:${Math.min(i,8)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"><span class="gcat">${g.cat}</span></div></div></div>`;
 }
 
 function loadMore(){curPg++;renderGrid(filtered(),false);}
