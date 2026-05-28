@@ -1530,7 +1530,7 @@ function openFavs(){
   render();
 }function cardHTML(g,i){
   const idx=GAMES.indexOf(g);
-  return `<div class="gc" style="animation-delay:${Math.min(i,12)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"><span class="gcat">${g.cat}</span><span class="gstars">★★★★★</span></div></div></div>`;
+  return `<div class="gc" style="animation-delay:${Math.min(i,12)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"><span class="gcat">${g.cat}</span></div></div></div>`;
 }
 
 function loadMore(){curPg++;renderGrid(filtered(),false);}
