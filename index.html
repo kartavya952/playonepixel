@@ -2638,22 +2638,27 @@ function downloadSitemap(){
 
 // ══ URL SE GAME AUTO OPEN ══
 function openGameFromURL(){
-  var params=new URLSearchParams(window.location.search);
-  var openSlug=params.get('openGame');
-  if(openSlug){
-    var slug=decodeURIComponent(openSlug).toLowerCase();
-    var idx=GAMES.findIndex(function(g){
-      var gSlug=g.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-      return gSlug===slug;
+  // Netlify pe direct URL se game kholo
+  var path = window.location.pathname;
+  var gameMatch = path.match(/\/game\/([^\/]+)/);
+  var slug = '';
+  
+  if(gameMatch){
+    slug = gameMatch[1];
+  } else {
+    var params = new URLSearchParams(window.location.search);
+    slug = params.get('openGame') || '';
+  }
+  
+  if(slug){
+    slug = decodeURIComponent(slug).toLowerCase();
+    var idx = GAMES.findIndex(function(g){
+      var gSlug = g.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+      return gSlug === slug;
     });
-    if(idx>=0) openGame(idx);
+    if(idx >= 0) openGame(idx);
   }
 }
-window.addEventListener('popstate',function(e){
-  if(e.state&&e.state.game!==undefined) _openGame(e.state.game);
-  else goHome();
-});
-
 // ══ LIKE DISLIKE SYSTEM ══
 function gpLike(){
   var btn=document.getElementById('gpLikeBtn');
