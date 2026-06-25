@@ -386,10 +386,9 @@ nav{position:sticky;top:0;z-index:9999;
 .favhrt{display:none !important;}
 
 /* GAME INFO */
-.gi{padding:9px 12px 11px;}
-.gn{font-size:0.72rem;font-weight:700;color:#fff;padding:6px 8px;position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.85));opacity:0;transition:opacity 0.25s;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;z-index:2;}
-.gc:hover .gn,.gc:active .gn{opacity:1;}
 .gi{display:none;}
+.gn{font-size:0.72rem;font-weight:700;color:#fff;padding:6px 8px;position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.88));opacity:0;transition:opacity 0.25s;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;z-index:2;}
+.gc:hover .gn,.gc:active .gn{opacity:1;}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .gm{display:flex;align-items:center;justify-content:space-between;margin-top:3px;}
 .gcat{font-size:0.66rem;color:#aaa;font-weight:700;text-transform:capitalize;}
@@ -1521,7 +1520,7 @@ function renderGrid(list,reset){
 
 function cardHTML(g,i){
   const idx=GAMES.indexOf(g);
-  return `<div class="gc" style="animation-delay:${Math.min(i,8)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"></div></div></div>`;
+  return `<div class="gc" style="animation-delay:${Math.min(i,8)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gn">${g.name}</div></div>`;
 }
 
 function loadMore(){curPg++;renderGrid(filtered(),false);}
@@ -1544,7 +1543,7 @@ function openFavs(){
   render();
 }function cardHTML(g,i){
   const idx=GAMES.indexOf(g);
-  return `<div class="gc" style="animation-delay:${Math.min(i,12)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gi"><div class="gn">${g.name}</div><div class="gm"></div></div></div>`;
+  return `<div class="gc" style="animation-delay:${Math.min(i,12)*0.03}s" onclick="openGame(${idx})">${thumb(g,'th-grid')}<div class="gn">${g.name}</div></div>`;
 }
 
 function loadMore(){curPg++;renderGrid(filtered(),false);}
@@ -1800,7 +1799,7 @@ function _openGame(idx){
   // Related
   const rel=GAMES.filter(x=>x.cat===g.cat&&x!==g).slice(0,6);
   const rl=rel.length>=3?rel:GAMES.filter(x=>x!==g).slice(0,6);
-  document.getElementById('relGrid').innerHTML=rl.map(r=>{const ri=GAMES.indexOf(r);return `<div class="gc" onclick="openGame(${ri})">${thumb(r,'th-grid',false)}<div class="gi"><div class="gn">${r.name}</div><div class="gm"></div></div></div>`;}).join('');
+  document.getElementById('relGrid').innerHTML=rl.map(r=>{const ri=GAMES.indexOf(r);return `<div class="gc" onclick="openGame(${ri})">${thumb(r,'th-grid',false)}<div class="gn">${r.name}</div></div>`;}).join('');
 }
 
 function updateGpFav(){
