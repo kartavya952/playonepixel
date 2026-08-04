@@ -1,1 +1,2 @@
-
+# Cloudflare Pages Functions (/game/*, /sitemap.xml) handle their own routing automatically.
+# Homepage (/) is served directly by index.html — no redirect rules needed here.
