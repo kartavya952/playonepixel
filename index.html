@@ -354,8 +354,8 @@ nav{position:sticky;top:0;z-index:9999;
   box-shadow:0 3px 10px rgba(0,0,0,0.1);}
 
 /* GAME CARDS */
-.gc{border-radius:14px;overflow:hidden;cursor:pointer;position:relative;
-  background:white;box-shadow:0 4px 16px rgba(0,0,0,0.13),0 0 0 1px rgba(255,255,255,0.6);
+.gc{border-radius:18px;overflow:hidden;cursor:pointer;position:relative;
+  background:white;box-shadow:0 4px 14px rgba(0,0,0,0.18);
   transition:transform 0.25s cubic-bezier(.25,.8,.35,1.2),box-shadow 0.25s ease;
   animation:fu 0.3s ease both;z-index:1;}
 .gc:hover{transform:scale(1.22);z-index:10;
@@ -407,11 +407,11 @@ nav{position:sticky;top:0;z-index:9999;
   font-size:0.74rem;font-weight:800;}
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;grid-auto-flow:dense;}
-@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr);gap:12px;}}
-@media(min-width:900px){.grid{grid-template-columns:repeat(6,1fr);gap:14px;}}
-@media(min-width:1200px){.grid{grid-template-columns:repeat(8,1fr);gap:14px;}}
-@media(min-width:1400px){.grid{grid-template-columns:repeat(10,1fr);gap:14px;}}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;grid-auto-flow:dense;}
+@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr);gap:8px;}}
+@media(min-width:900px){.grid{grid-template-columns:repeat(6,1fr);gap:10px;}}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(8,1fr);gap:10px;}}
+@media(min-width:1400px){.grid{grid-template-columns:repeat(10,1fr);gap:10px;}}
 
 /* LOAD MORE */
 .loadmore-wrap{display:none;justify-content:center;margin-top:20px;}
@@ -493,7 +493,7 @@ nav{position:sticky;top:0;z-index:9999;
   padding:12px 15px;font-family:'Fredoka One',cursive;font-size:0.95rem;cursor:pointer;transition:all 0.2s;}
 .gpfsbtn:hover{background:#d9f5f5;transform:translateY(-2px);}
 .reltitle{font-family:'Fredoka One',cursive;font-size:1.05rem;color:white;margin:20px 0 10px;}
-.relgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;grid-auto-flow:dense;}
+.relgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;grid-auto-flow:dense;}
 @media(min-width:600px){.relgrid{grid-template-columns:repeat(4,1fr);}}
 @media(min-width:900px){.relgrid{grid-template-columns:repeat(6,1fr);}}
 @media(min-width:1200px){.relgrid{grid-template-columns:repeat(8,1fr);}}
@@ -1319,12 +1319,13 @@ function renderGrid(list,reset){
           </div>`;
           if(adD.firstElementChild)frag.appendChild(adD.firstElementChild);
         }
-        // Har 2 rows ke baad ek bada card daalo
+        // Har 2 rows ke baad ek bada card daalo (is game ko NORMAL card mein dobara mat daalo — warna duplicate ho jaayega)
         if(i>0 && i%rowSize===0){
           const bigIdx = GAMES.indexOf(g);
           const bigD = document.createElement('div');
           bigD.innerHTML=`<a class="gc gc-big" href="/game/${slugOf(g.name)}/" onclick="openGame(${bigIdx});return false;" style="grid-column:span 2;grid-row:span 2;border-radius:18px;overflow:hidden;position:relative;cursor:pointer;">${thumb(g,'th-grid')}<div class="gn" style="opacity:1;font-size:1rem;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,0.9));">${g.name}</div></a>`;
           if(bigD.firstElementChild)frag.appendChild(bigD.firstElementChild);
+          return; // is game ko neeche wale normal card mein SKIP karo
         }
         const d=document.createElement('div');
         d.innerHTML=cardHTML(g,idx);
@@ -1641,11 +1642,12 @@ function _openGame(idx){
         <!-- ✅ ADSENSE IN-FEED CODE YAHAN PASTE KARNA -->
       </div>`;
     }
-    // Har 2 rows ke baad bada card
+    // Har 2 rows ke baad bada card (is game ko normal card mein SKIP karo, warna duplicate hoga)
     const cols = window.innerWidth>=1200?8:window.innerWidth>=900?6:window.innerWidth>=600?4:3;
     const rowSize = cols*2;
     if(i>0 && i%rowSize===0){
       relHTML+=`<a class="gc gc-big" href="/game/${slugOf(r.name)}/" onclick="openGame(${ri});return false;" style="grid-column:span 2;grid-row:span 2;border-radius:18px;overflow:hidden;position:relative;cursor:pointer;">${thumb(r,'th-grid')}<div class="gn" style="opacity:1;font-size:1rem;padding:8px;background:linear-gradient(transparent,rgba(0,0,0,0.9));">${r.name}</div></a>`;
+      return; // is game ko neeche wale normal card mein dobara mat daalo
     }
     relHTML+=`<a class="gc" href="/game/${slugOf(r.name)}/" onclick="openGame(${ri});return false;">${thumb(r,'th-grid',false)}<div class="gn">${r.name}</div></a>`;
   });
