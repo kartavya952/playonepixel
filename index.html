@@ -1256,31 +1256,18 @@ function render(){
   const _secTtl=document.getElementById('secTtl');
   if(_secTtl)_secTtl.textContent=LBLS[curCat]||'🎮 Games';
   const tw=document.getElementById('topWrap');
+  tw.innerHTML='';tw.style.display='none'; // alag "Featured" section nahi chahiye — sab games ek hi normal grid mein
 
   if(curCat==='favorites'&&!list.length){
-    tw.innerHTML='';
     document.getElementById('mainGrid').innerHTML=`<div class="favsempty"><div class="ef">❤️</div><h3>No Favorites Yet!</h3><p>Games pe dil button dabao yahan save ho jayega</p></div>`;
     safeStyle('lmWrap','display','none');
     safeText('gcnt','');
     return;
   }
-  if(!list.length){tw.innerHTML='';document.getElementById('mainGrid').innerHTML=`<div class="nores">Koi game nahi mila 🎮</div>`;safeStyle('lmWrap','display','none');return;}
+  if(!list.length){document.getElementById('mainGrid').innerHTML=`<div class="nores">Koi game nahi mila 🎮</div>`;safeStyle('lmWrap','display','none');return;}
 
-  if(curCat==='all'){
-    const featGames = GAMES.filter(g=>g.featured).slice(0,4);
-    const topGames = featGames.length ? featGames : GAMES.slice(0,4);
-    tw.innerHTML=`<div class="feat-grid">${topGames.map(g=>{
-      const idx=GAMES.indexOf(g);
-      return `<a class="gc" href="/game/${slugOf(g.name)}/" onclick="openGame(${idx});return false;">${thumb(g,'th-big')}<div class="gn">${g.name}</div></a>`;
-    }).join('')}</div>`;
-    // Feat-grid mein dikhaye gaye games ko main grid se hatao (taaki na to duplicate ho, na koi game gayab ho)
-    _topExcludeSet=new Set(topGames);
-    renderGrid(list.filter(g=>!_topExcludeSet.has(g)),true);
-  } else {
-    _topExcludeSet=null;
-    tw.innerHTML='';
-    renderGrid(list,true);
-  }
+  _topExcludeSet=null;
+  renderGrid(list,true);
 }
 
 // RENDER GRID — DocumentFragment for blazing fast 1000+ games!
