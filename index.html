@@ -695,13 +695,9 @@ footer p{color:rgba(255,255,255,0.5);font-size:0.74rem;}
 /* ═══ VIP AD HIDING ═══ */
 body.vip-active .ad-container,
 body.vip-active .sticky-ad,
-body.vip-active #adSlot1,
-body.vip-active #adSlot2,
+body.vip-active .infeed-ad-slot,
 body.vip-active #adSlot3top,
-body.vip-active #adSlot3bottom,
-body.vip-active #adSlot4,
-body.vip-active #adSlot5,
-body.vip-active #adSlot6{
+body.vip-active #adSlot3bottom{
   display:none !important;
 }
 
@@ -808,7 +804,7 @@ body.vip-active #adSlot6{
   </div>
   <div class="inter-ad-area">
     <div class="inter-ad-inner">
-      <!-- ✅ ADSENSE INTERSTITIAL CODE YAHAN DALO -->
+      <!-- Monetag Vignette apna khud ka overlay banata hai, isliye is div ke andar nahi — page ke end mein globally lagaya hai -->
       <div style="color:#444;font-size:0.9rem;">📢 Ad Loading...</div>
     </div>
   </div>
@@ -819,16 +815,8 @@ body.vip-active #adSlot6{
   <div class="sticky-ad-label">Advertisement</div>
   <button class="sticky-close" onclick="closeStickyAd()">✕</button>
   <div class="sticky-ad-inner">
-    <!-- ✅ ADSENSE ANCHOR AD CODE YAHAN DALO -->
-    <!--
-    <ins class="adsbygoogle"
-         style="display:block"
-         data-ad-client="ca-pub-TUMHARA-ID"
-         data-ad-slot="STICKY-SLOT-ID"
-         data-ad-format="auto"
-         data-full-width-responsive="true">
-    </ins>
-    -->
+    <!-- ✅ ADSTERRA SOCIAL BAR (STICKY/ANCHOR) ✅ -->
+    <script src="https://pl31231202.profitableratecpmnetwork.com/e5/84/35/e58435f7feed00f5f1c55937a094b8c2.js"></script>
   </div>
 </div>
 
@@ -927,22 +915,6 @@ body.vip-active #adSlot6{
 <!-- ══ HOME VIEW ══ -->
 <div id="homeView" class="view active">
 <div class="home">
-  <!-- ═══ AD SLOT 4 — NAVBAR KE NEECHE (Sticky) ═══ -->
-  <div class="ad-container ad-sticky" id="adSlot4" style="display:none;">
-    <div class="ad-label">Advertisement</div>
-    <div class="ad-inner">
-      <!--
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-TUMHARA-ID"
-           data-ad-slot="SLOT-4-ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true">
-      </ins>
-      -->
-    </div>
-  </div>
-
   <div class="pills" style="display:none;">
     <button class="pill on" onclick="fc('all',this)">🎮 All games</button>
     <button class="pill" onclick="fc('action',this)">⚔️ Action</button>
@@ -976,14 +948,8 @@ body.vip-active #adSlot6{
     <button class="pill" onclick="fc('html5',this)">💻 HTML5</button>
   </div>
 
-  <!-- ═══ AD SLOT 1 — HIDE KIYA ═══ -->
-  <div id="adSlot1" style="display:none;"></div>
-
   <!-- ═══ NO TOPWRAP FEATURED ═══ -->
   <div id="topWrap" style="display:none;"></div>
-
-  <!-- ═══ AD SLOT 2 — HIDE KIYA ═══ -->
-  <div id="adSlot2" style="display:none;"></div>
 
   <div class="sechdr" style="display:none;">
     <div class="secttl" id="secTtl">🔥 Popular games</div>
@@ -991,16 +957,10 @@ body.vip-active #adSlot6{
   </div>
   <div class="grid" id="mainGrid"></div>
 
-  <!-- ═══ AD SLOT 5 — HIDE KIYA ═══ -->
-  <div id="adSlot5" style="display:none;"></div>
-
   <div class="loadmore-wrap" id="lmWrap">
     <button class="loadmore-btn" id="lmBtn" onclick="loadMore()">Load More Games ↓</button>
   </div>
 </div>
-
-  <!-- ═══ AD SLOT 6 — HIDE KIYA ═══ -->
-  <div id="adSlot6" style="display:none;margin:16px 10px;"></div>
 
 <footer>
   <div class="ftlogo">playonepixel</div>
@@ -1034,7 +994,25 @@ body.vip-active #adSlot6{
   <div class="ad-container" id="adSlot3top" style="margin-bottom:12px;">
     <div class="ad-label">Advertisement</div>
     <div class="ad-inner">
-      <!-- AdSense code yahan aayega -->
+      <!-- ✅ ADSTERRA BANNER — Mobile pe 320x50, Desktop pe 728x90 (screen-size ke hisaab se) ✅ -->
+      <script>
+        (function(){
+          var isMobile = window.innerWidth < 600;
+          var opts, src;
+          if(isMobile){
+            opts = { 'key':'f929df08aab2e6132deb788d6d5dc290', 'format':'iframe', 'height':50, 'width':320, 'params':{} };
+            src = 'https://www.highrevenueformat.com/f929df08aab2e6132deb788d6d5dc290/invoke.js';
+          } else {
+            opts = { 'key':'2eb13351f24120e4ac75ff9202e2eb49', 'format':'iframe', 'height':90, 'width':728, 'params':{} };
+            src = 'https://www.highrevenueformat.com/2eb13351f24120e4ac75ff9202e2eb49/invoke.js';
+          }
+          window.atOptions = opts;
+          var s = document.createElement('script');
+          s.src = src;
+          s.async = false; // order guarantee — bottom banner ke atOptions se clash na ho
+          document.currentScript.parentNode.appendChild(s);
+        })();
+      </script>
     </div>
   </div>
 
@@ -1096,16 +1074,17 @@ body.vip-active #adSlot6{
   <div class="ad-container" id="adSlot3bottom">
     <div class="ad-label">Advertisement</div>
     <div class="ad-inner">
-      <!-- ✅ APPROVAL KE BAAD YAHAN APNA ADSENSE CODE DALO -->
-      <!--
-      <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-TUMHARA-ID"
-           data-ad-slot="SLOT-3-ID"
-           data-ad-format="auto"
-           data-full-width-responsive="true">
-      </ins>
-      -->
+      <!-- ✅ ADSTERRA BANNER 300x250 (BOTTOM) ✅ -->
+      <script>
+        atOptions = {
+          'key' : 'f026d8f741cacb2de6f96a4209c69b74',
+          'format' : 'iframe',
+          'height' : 250,
+          'width' : 300,
+          'params' : {}
+        };
+      </script>
+      <script src="https://www.highrevenueformat.com/f026d8f741cacb2de6f96a4209c69b74/invoke.js"></script>
     </div>
   </div>
 
@@ -1285,8 +1264,6 @@ function renderGrid(list,reset){
 
     var _gcnt=document.getElementById('gcnt');
     if(_gcnt)_gcnt.textContent=rest.length+' games';
-    const midEl=document.getElementById('adSlot2');
-    if(midEl)midEl.style.display=rest.length>6?'block':'none';
 
     const frag=document.createDocumentFragment();
     // Columns per row detect karo
@@ -1297,12 +1274,21 @@ function renderGrid(list,reset){
     items.forEach((g,idx)=>{
       const i = startOffset + idx; // Global index — pagination ke across consistent
       try{
-        // Har 24 games ke baad IN-FEED AD daalo (big card jaisi size)
-        if(i>0 && i%adGameCount===0){
+        // 3 unique Adsterra Native Banner codes — har ek alag container-ID, isliye 3 alag positions pe safe hai
+        const MAX_INFEED_ADS = 3;
+        const INFEED_AD_CODES = [
+          {script:"https://pl31231201.profitableratecpmnetwork.com/267e7763c9fa9b2493f34f2ff9861e66/invoke.js", container:"container-267e7763c9fa9b2493f34f2ff9861e66"},
+          {script:"https://pl31244550.profitableratecpmnetwork.com/f18e980b9be1036733e1e7ed3bd0fb39/invoke.js", container:"container-f18e980b9be1036733e1e7ed3bd0fb39"},
+          {script:"https://pl31244551.profitableratecpmnetwork.com/92bf377737fccbcac7baba73f4a5c7e7/invoke.js", container:"container-92bf377737fccbcac7baba73f4a5c7e7"}
+        ];
+        if(i>0 && i%adGameCount===0 && (i/adGameCount)<=MAX_INFEED_ADS){
+          const adIdx = (i/adGameCount)-1;
+          const adCode = INFEED_AD_CODES[adIdx];
           const adD = document.createElement('div');
           adD.innerHTML=`<div class="gc infeed-ad-slot" style="grid-column:span 2;grid-row:span 2;border-radius:18px;overflow:hidden;position:relative;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;min-height:175px;">
             <span style="position:absolute;top:6px;left:8px;font-size:0.6rem;color:rgba(255,255,255,0.6);background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;">Advertisement</span>
-            <!-- ✅ ADSENSE IN-FEED CODE YAHAN PASTE KARNA -->
+            <script async="async" data-cfasync="false" src="${adCode.script}"><\/script>
+            <div id="${adCode.container}"></div>
           </div>`;
           if(adD.firstElementChild)frag.appendChild(adD.firstElementChild);
         }
@@ -1411,14 +1397,18 @@ function openGame(idx){
   const g=GAMES[idx];
   if(!g) return;
 
-  // Show interstitial BEFORE game opens
-  showInterstitial(()=>_openGame(idx));
+  // Monetag Vignette apna khud ka ad + skip button dikhata hai (click-triggered) —
+  // isliye humara khud ka alag "Ad Loading" popup yahan nahi chahiye, seedha game khulne do
+  _openGame(idx);
 }
 
 function _openGame(idx){
   const g=GAMES[idx];
   if(!g) return;
   curGame=g;
+
+  // ══ LIKE/DISLIKE — is specific game ka sahi state aur count load karo ══
+  loadLikeState(g);
 
   // ══ VIEW SWITCH — SABSE PEHLE ══
   var _hv0=document.getElementById('homeView');if(_hv0)_hv0.style.display='none';
@@ -1664,6 +1654,8 @@ function gpFS(){
 function goHome(){
   try{
     document.title='PlayOnePixel - Free Online Games | Play 1000+ Games No Download';
+    // URL ko wapas home ("/") pe reset karo — warna refresh karne pe purana game phir khul jaata hai
+    try{ window.history.pushState({}, 'PlayOnePixel', '/'); }catch(e){}
     // Remove iframe
     var gpf=document.getElementById('gpFrame');
     if(gpf){var oldi=gpf.querySelector('iframe');if(oldi)oldi.remove();}
@@ -2235,7 +2227,7 @@ function isVIP(){
 function openSub(){document.getElementById('subOverlay').classList.add('show');}
 // ═══ LAZY-LOAD AD SYSTEM ═══
 // Jab bhi real ad code (AdSense/Monetag) daalna ho, use is function ke andar wrap karna:
-//   lazyLoadAd('adSlot1', function(el){ el.innerHTML = 'YAHAN AD CODE PASTE KARO'; });
+//   lazyLoadAd('adSlot3top', function(el){ el.innerHTML = 'YAHAN AD CODE PASTE KARO'; });
 // Ye ad ko tabhi load karega jab user scroll karke uske paas pahunchega — page fast rahega.
 function lazyLoadAd(slotId, loadCallback){
   const el = document.getElementById(slotId);
@@ -2541,53 +2533,73 @@ function openGameFromURL(){
   }
 }
 // ══ LIKE DISLIKE SYSTEM ══
+// Har game ka likes/dislikes count localStorage mein persist hota hai — "likecount_GameName" / "dislikecount_GameName"
+function loadLikeState(g){
+  var lb=document.getElementById('gpLikeBtn');
+  var db=document.getElementById('gpDislikeBtn');
+  var lc=document.getElementById('gpLikeCount');
+  var dc=document.getElementById('gpDislikeCount');
+  if(!lb||!db||!lc||!dc) return;
+  var name=g?g.name:'';
+  var myVote=localStorage.getItem('like_'+name)||'none';
+  var likeCount=parseInt(localStorage.getItem('likecount_'+name)||'0',10);
+  var dislikeCount=parseInt(localStorage.getItem('dislikecount_'+name)||'0',10);
+  lb.classList.toggle('active-like', myVote==='like');
+  db.classList.toggle('active-dislike', myVote==='dislike');
+  lc.textContent=likeCount;
+  dc.textContent=dislikeCount;
+}
 function gpLike(){
   var btn=document.getElementById('gpLikeBtn');
   var cnt=document.getElementById('gpLikeCount');
   var dis=document.getElementById('gpDislikeBtn');
   var dc=document.getElementById('gpDislikeCount');
-  var key='like_'+(curGame?curGame.name:'');
+  var name=curGame?curGame.name:'';
+  var key='like_'+name;
+  var lcKey='likecount_'+name;
+  var dcKey='dislikecount_'+name;
   var val=localStorage.getItem(key)||'none';
+  var likeCount=parseInt(localStorage.getItem(lcKey)||'0',10);
+  var dislikeCount=parseInt(localStorage.getItem(dcKey)||'0',10);
   if(val==='like'){
     localStorage.setItem(key,'none');
     btn.classList.remove('active-like');
-    cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1);
+    likeCount=Math.max(0,likeCount-1);
   } else {
     localStorage.setItem(key,'like');
     btn.classList.add('active-like');
     dis.classList.remove('active-dislike');
-    if(val==='dislike') dc.textContent=Math.max(0,parseInt(dc.textContent)-1);
-    cnt.textContent=parseInt(cnt.textContent)+1;
+    if(val==='dislike'){ dislikeCount=Math.max(0,dislikeCount-1); localStorage.setItem(dcKey,dislikeCount); dc.textContent=dislikeCount; }
+    likeCount=likeCount+1;
   }
+  localStorage.setItem(lcKey,likeCount);
+  cnt.textContent=likeCount;
 }
 function gpDislike(){
   var btn=document.getElementById('gpDislikeBtn');
   var cnt=document.getElementById('gpDislikeCount');
   var like=document.getElementById('gpLikeBtn');
   var lc=document.getElementById('gpLikeCount');
-  var key='like_'+(curGame?curGame.name:'');
+  var name=curGame?curGame.name:'';
+  var key='like_'+name;
+  var lcKey='likecount_'+name;
+  var dcKey='dislikecount_'+name;
   var val=localStorage.getItem(key)||'none';
+  var likeCount=parseInt(localStorage.getItem(lcKey)||'0',10);
+  var dislikeCount=parseInt(localStorage.getItem(dcKey)||'0',10);
   if(val==='dislike'){
     localStorage.setItem(key,'none');
     btn.classList.remove('active-dislike');
-    cnt.textContent=Math.max(0,parseInt(cnt.textContent)-1);
+    dislikeCount=Math.max(0,dislikeCount-1);
   } else {
     localStorage.setItem(key,'dislike');
     btn.classList.add('active-dislike');
     like.classList.remove('active-like');
-    if(val==='like') lc.textContent=Math.max(0,parseInt(lc.textContent)-1);
-    cnt.textContent=parseInt(cnt.textContent)+1;
+    if(val==='like'){ likeCount=Math.max(0,likeCount-1); localStorage.setItem(lcKey,likeCount); lc.textContent=likeCount; }
+    dislikeCount=dislikeCount+1;
   }
-}
-function gpResetLike(){
-  var lb=document.getElementById('gpLikeBtn');
-  var db=document.getElementById('gpDislikeBtn');
-  var lc=document.getElementById('gpLikeCount');
-  var dc=document.getElementById('gpDislikeCount');
-  if(lb)lb.classList.remove('active-like');
-  if(db)db.classList.remove('active-dislike');
-  if(lc)lc.textContent='0';
-  if(dc)dc.textContent='0';
+  localStorage.setItem(dcKey,dislikeCount);
+  cnt.textContent=dislikeCount;
 }
 
 // INIT — wait for games data before rendering anything
@@ -2604,6 +2616,25 @@ function gpResetLike(){
   try{setTimeout(openGameFromURL,800);}catch(e){}
 })();
 
+// Browser ka Back/Forward button sahi kaam kare — URL ke hisaab se sahi view dikhao
+window.addEventListener('popstate', function(){
+  try{
+    var path = window.location.pathname;
+    if(path === '/' || path === ''){
+      goHome();
+    } else if(/^\/game\//.test(path)){
+      openGameFromURL();
+    }
+  }catch(e){}
+});
+
+</script>
+
+<!-- ✅ MONETAG VIGNETTE — sirf non-VIP users ke liye load hota hai ✅ -->
+<script>
+  if(!document.body.classList.contains('vip-active')){
+    (function(s){s.dataset.zone='11752574',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')));
+  }
 </script>
 </body>
 </html>
