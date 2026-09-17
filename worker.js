@@ -173,6 +173,17 @@ export default {
       return new Response('<h1>Game not found</h1>', { status: 404, headers: { 'Content-Type': 'text/html' } });
     }
 
-    return env.ASSETS.fetch(request);
+    // Static files (index.html, etc.) serve karte waqt — Cloudflare ki default
+    // Content-Security-Policy header ko hata do, warna Adsterra ke ad scripts
+    // (jo eval() use karte hain) block ho jaate hain aur ads load nahi hote
+    const assetResponse = await env.ASSETS.fetch(request);
+    const newHeaders = new Headers(assetResponse.headers);
+    newHeaders.delete('Content-Security-Policy');
+    newHeaders.delete('content-security-policy');
+    return new Response(assetResponse.body, {
+      status: assetResponse.status,
+      statusText: assetResponse.statusText,
+      headers: newHeaders
+    });
   }
 };
