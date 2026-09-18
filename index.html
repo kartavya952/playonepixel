@@ -994,25 +994,17 @@ body.vip-active #adSlot3bottom{
   <div class="ad-container" id="adSlot3top" style="margin-bottom:12px;">
     <div class="ad-label">Advertisement</div>
     <div class="ad-inner">
-      <!-- ✅ ADSTERRA BANNER — Mobile pe 320x50, Desktop pe 728x90 (screen-size ke hisaab se) ✅ -->
+      <!-- ✅ ADSTERRA BANNER 728x90 (TOP) — simple static script, jaisa bottom wala hai ✅ -->
       <script>
-        (function(){
-          var isMobile = window.innerWidth < 600;
-          var opts, src;
-          if(isMobile){
-            opts = { 'key':'f929df08aab2e6132deb788d6d5dc290', 'format':'iframe', 'height':50, 'width':320, 'params':{} };
-            src = 'https://www.highrevenueformat.com/f929df08aab2e6132deb788d6d5dc290/invoke.js';
-          } else {
-            opts = { 'key':'2eb13351f24120e4ac75ff9202e2eb49', 'format':'iframe', 'height':90, 'width':728, 'params':{} };
-            src = 'https://www.highrevenueformat.com/2eb13351f24120e4ac75ff9202e2eb49/invoke.js';
-          }
-          window.atOptions = opts;
-          var s = document.createElement('script');
-          s.src = src;
-          s.async = false; // order guarantee — bottom banner ke atOptions se clash na ho
-          document.currentScript.parentNode.appendChild(s);
-        })();
+        atOptions = {
+          'key' : '2eb13351f24120e4ac75ff9202e2eb49',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
       </script>
+      <script src="https://www.highrevenueformat.com/2eb13351f24120e4ac75ff9202e2eb49/invoke.js"></script>
     </div>
   </div>
 
@@ -1287,10 +1279,18 @@ function renderGrid(list,reset){
           const adD = document.createElement('div');
           adD.innerHTML=`<div class="gc infeed-ad-slot" style="grid-column:span 2;grid-row:span 2;border-radius:18px;overflow:hidden;position:relative;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;min-height:175px;">
             <span style="position:absolute;top:6px;left:8px;font-size:0.6rem;color:rgba(255,255,255,0.6);background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:4px;">Advertisement</span>
-            <script async="async" data-cfasync="false" src="${adCode.script}"><\/script>
             <div id="${adCode.container}"></div>
           </div>`;
-          if(adD.firstElementChild)frag.appendChild(adD.firstElementChild);
+          if(adD.firstElementChild){
+            frag.appendChild(adD.firstElementChild);
+            // ✅ FIX: innerHTML se <script> tag DALA hua kabhi execute nahi hota (browser security).
+            // Isliye script ko alag se, asli DOM API (createElement+append) se banana zaroori hai.
+            const adScript=document.createElement('script');
+            adScript.async=true;
+            adScript.dataset.cfasync='false';
+            adScript.src=adCode.script;
+            document.body.appendChild(adScript);
+          }
         }
         // Har 2 rows ke baad ek bada card daalo (is game ko NORMAL card mein dobara mat daalo — warna duplicate ho jaayega)
         if(i>0 && i%rowSize===0){
